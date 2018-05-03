@@ -1,0 +1,126 @@
+.flex-container{
+	display: flex;
+}
+
+
+body{
+	background-color: #333333;
+}
+.wrapper{
+  margin: 0 auto;
+  width: 50%;
+}
+li {
+	display: inline-block;
+	border-radius: 5px;
+	
+	width: 66px;
+    height: 66px;
+	margin: 50px;
+	
+	div{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+ul{
+	width: 100%;
+	padding: 0;
+}
+
+.card{
+	// background: radial-gradient(circle, #00fad8, #2247ff);
+	// animation: glow 1052ms infinite;
+	transition: background 1s ease-in-out;
+}
+
+
+//classes to add to li via js
+.normal{
+	background: radial-gradient(circle, #00fad8, #2247ff);
+	animation: normal-glow 1052ms infinite;
+	
+}
+.pressed{
+	// margin-left: 50%;
+  background: radial-gradient(circle, #f0b0b0, #c040ff);
+	
+}
+.match{
+	// background: radial-gradient(circle, #d8fa00, #47ff22);
+	// background: radial-gradient(circle, #2feb00, #47ff22);
+	background: radial-gradient(circle, #2febe0, #18a3a5);
+
+}
+
+.unmatched{
+	background: radial-gradient(circle, #d800fa, #ff2247);
+	animation: pressed-glow 1052ms infinite;
+
+}
+
+
+.disabled{
+	pointer-events: none;
+}
+
+
+
+
+@keyframes normal-glow{
+	0% {
+    background-color: #d8fa00;
+    -webkit-box-shadow: 0 0 3px #2247ff;
+            box-shadow: 0 0 3px #2247ff; 
+	}
+  50% {
+    background-color: #d8fa00;
+    -webkit-box-shadow: 0 0 40px #2247ff;
+            box-shadow: 0 0 40px #2247ff; 
+	}
+  100% {
+    background-color: #d8fa00;
+    -webkit-box-shadow: 0 0 3px #2247ff;
+            box-shadow: 0 0 3px #2247ff; 
+	}
+}
+
+
+@keyframes pressed-glow{
+	0% {
+    background-color: #00fad8;
+    -webkit-box-shadow: 0 0 3px #ff4722;
+            box-shadow: 0 0 3px #ff4722; 
+	}
+  50% {
+    background-color: #00fad8;
+    -webkit-box-shadow: 0 0 40px #ff4722;
+            box-shadow: 0 0 40px #ff4722; 
+	}
+  100% {
+    background-color: #00fad8;
+    -webkit-box-shadow: 0 0 3px #ff4722;
+            box-shadow: 0 0 3px #ff4722; 
+	}
+}
+
+
+@keyframes match-glow{
+	0% {
+    background-color: #00fad8;
+    -webkit-box-shadow: 0 0 3px #2247ff;
+            box-shadow: 0 0 3px #2247ff; 
+	}
+  50% {
+    background-color: #00fad8;
+    -webkit-box-shadow: 0 0 40px #2247ff;
+            box-shadow: 0 0 40px #2247ff; 
+	}
+  100% {
+    background-color: #00fad8;
+    -webkit-box-shadow: 0 0 3px #2247ff;
+            box-shadow: 0 0 3px #2247ff; 
+	}
+}
