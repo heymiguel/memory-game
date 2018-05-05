@@ -1,28 +1,98 @@
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block;}audio,canvas,video{display:inline-block;}audio:not([controls]){display:none;height:0;}[hidden]{display:none;}html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}a:focus{outline:thin dotted;}a:active,a:hover{outline:0;}h1{font-size:2em;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:700;}dfn{font-style:italic;}mark{background:#ff0;color:#000;}code,kbd,pre,samp{font-family:monospace, serif;font-size:1em;}pre{white-space:pre-wrap;word-wrap:break-word;}q{quotes:\201C \201D \2018 \2019;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-.5em;}sub{bottom:-.25em;}img{border:0;}svg:not(:root){overflow:hidden;}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em;}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0;}button,input{line-height:normal;}button,html input[type=button],/* 1 */input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}button[disabled],input[disabled]{cursor:default;}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0;}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none;}textarea{overflow:auto;vertical-align:top;}table{border-collapse:collapse;border-spacing:0;}body,figure{margin:0;}legend,button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
+
+.clearfix:after {visibility: hidden; display: block; font-size: 0; content: ''; clear: both; height: 0; }
+
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+*{
+  font-family: 'Nunito Sans', sans-serif;
+  color: #4ff1c0;
+}
+
+
+#main-screen{
+  height: 100vh;
+  text-align: center;
+  position: relative;
+  padding: 0;
+  h1{
+    margin: 10% auto 50px auto;
+    padding-top: 0px;
+    font-size: 100px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 2px grey;
+    font-weight: 800;
+    border-bottom: 3px solid #00fad8;
+    border-right: 3px solid #00fad8;
+    width: 40%;
+    line-height: 0.9;
+  }
+  z-index: 1;
+}
+
+
 .flex-container{
-	display: flex;
+  display: flex;
+  justify-content: space-between;
+  align-items: space-between;
 }
 
 
 body{
+  background: url('../images/bg1.jpg');
+  // background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)), url('../images/bg1.jpg');
+  position: relative;
+  overflow: hidden;
 	background-color: #333333;
 }
 .wrapper{
   margin: 0 auto;
-  width: 50%;
+  // width: 90%;
 }
+
+#game-screen{
+  position: absolute;
+  top: 0;
+  left: 100%;  
+}
+
+
 li {
 	display: inline-block;
-	border-radius: 5px;
+	border-radius: 10px;
 	
 	width: 66px;
-    height: 66px;
-	margin: 50px;
-	
+  height: 66px;
+	margin: 8%;
+  transition: all 1.5s ease-in-out;
+  background: red;
 	div{
         width: 100%;
         height: 100%;
     }
 }
+
+.deck{
+  padding: 150px 0;
+  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+
+  display: grid;
+
+  // grid-template-columns: repeat(4, minmax(66px, 1fr));
+  // grid-template-rows: repeat(4, minmax(66px, 1fr));
+  grid-template-columns: repeat(4, 20vmin);
+  grid-template-rows: repeat(4, 20vmin);
+  justify-content: center;
+  align-content: center;
+  // grid-column-gap: 5vw;
+  // grid-row-gap: 5vw;
+}
+
+
+
+
 
 
 ul{
@@ -31,22 +101,50 @@ ul{
 }
 
 .card{
-	// background: radial-gradient(circle, #00fad8, #2247ff);
-	// animation: glow 1052ms infinite;
-	transition: background 1s ease-in-out;
+  //zoe
+  width: 80%;
+  height: 80%;
+
+  justify-self: center;
+  
+
+  &--playButton{
+    position: relative;
+    // padding: 100px 0;
+    margin: 0 auto;
+    margin-top: 150px;
+    width: 132px;
+    height: 132px;
+  	border-radius: 10px;
+    @extend .card;
+    @extend .normal;
+    background: #2247ff;
+    
+    p{
+      margin: 0;
+      width: 100%;
+      position: absolute;
+      top: 35%;
+      i{
+        font-size: 40px;
+      } 
+    }
+  }
+
 }
 
 
 //classes to add to li via js
 .normal{
+  color: blue;
 	background: radial-gradient(circle, #00fad8, #2247ff);
 	animation: normal-glow 1052ms infinite;
-	
+	opacity: 1;
 }
 .pressed{
 	// margin-left: 50%;
   background: radial-gradient(circle, #f0b0b0, #c040ff);
-	
+  // border-radius: 5px;
 }
 .match{
 	// background: radial-gradient(circle, #d8fa00, #47ff22);
@@ -58,6 +156,7 @@ ul{
 .unmatched{
 	background: radial-gradient(circle, #d800fa, #ff2247);
 	animation: pressed-glow 1052ms infinite;
+  opacity: 0.99;
 
 }
 

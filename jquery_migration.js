@@ -1,7 +1,5 @@
 const app = {
     card: document.getElementsByClassName("card"),
-    // cards: [...app.card]
-
 };
 
 const build = {
@@ -36,11 +34,10 @@ app.htmlFix = function(){
         //first clears the entire html inside of the deck
         build.deck.innerHTML = "";
         build.cards.forEach(item => build.deck.append(item));
-        console.log(build.cards[i]);
+        // console.log(build.cards[i]);
         //cards[i].classList.remove("show", "open", "match", "disabled");
     }
 }
-
 
 
 
@@ -60,16 +57,25 @@ $(function() {
     build.cards = app.shuffle(build.cards);
 
     app.htmlFix();
-
-    
     
 
     //on card click event listener, (should probably flip here as well)
     $('.card div').on('click', function(e){
+        // let oldSound;
+        // if (build.openedCards.length === 1)
+        // {
+        //     let firstSongID = build.openedCards[0].type;
+        //     oldSound = $(`div#${firstSongID}`);
+        //     let child = oldSound.;
+        //     console.log(child);
+        //     // oldSound = 
+        // }
         const sound = $(this).children('#audio')[0];
+        if(!audio) return;
+
+        sound.currentTime = 0;
         sound.play();
         applyPressedState($(this));
-        // checkForMatch();        
     });
 
 
@@ -82,10 +88,7 @@ $(function() {
         build.openedCards.push(this);
 
         if (build.openedCards.length === 2){
-            console.log(build.openedCards[0].closest('div'));
-
             if (build.openedCards[0].type === build.openedCards[1].type){
-                console.log("reached");
                 matched();
             }
             else{
@@ -99,7 +102,10 @@ $(function() {
         //what to do when the array passes length 3?
         //pop array twice then compare?
         else{
+            console.log(build.openedCards);
             
+            build.openedCards[0].classList.remove("pressed");
+            build.openedCards[1].classList.remove("pressed");
         }
     }
 
@@ -112,21 +118,44 @@ $(function() {
     function unmatched(){
         build.openedCards[0].classList.add("unmatched");
         build.openedCards[1].classList.add("unmatched");
-        build.openedCards[0].classList.add("disabled");
-        build.openedCards[1].classList.add("disabled");
-        // build.openedCards = [];
-        setTimeout(function () {
-            build.openedCards[0].classList.remove("pressed", "unmatched", "disabled");
-            build.openedCards[1].classList.remove("pressed", "unmatched", "disabled");
-            build.openedCards = [];
-            
-        }, 2000);
-        
+        // build.openedCards[0].classList.remove("disabled");
+        // build.openedCards[1].classList.add("disabled");
+        build.openedCards = [];
+        // setTimeout(function () {
+        //     build.openedCards[0].classList.remove("pressed", "unmatched", "disabled");
+        //     build.openedCards[1].classList.remove("pressed", "unmatched", "disabled");
+        //     build.openedCards = [];
+        // }, 2000);//GET RID OF THIS IF WE CAN GET THE THING WORKING
     }
 
-    
+
+    function removeTransition(e) {
+        if (e.propertyName !== 'opacity') return;
+        e.target.classList.remove("pressed", "unmatched", "disabled");
+    }
+
+    const keys = document.querySelectorAll('.card');
+    console.log(keys);
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));    
 
 
+
+
+    $('.card--playButton').on("click", function(){
+        // $('#main-screen').slideToggle("slow", function(){
+            $("#main-screen").animate({ width: 'toggle' }, 350);            //complete
+            $("#game-screen").animate({left: '0' }, 350);
+
+        // });
+
+
+
+        // $("#show").click(function () {
+        //     $(".target").show("slide", { direction: "up" }, 2000);
+        // });
+
+
+    });
 
 
     for (let i = 0; i < build.cards.length; i++) {
