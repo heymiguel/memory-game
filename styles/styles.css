@@ -162,7 +162,9 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   border-radius: 5px;
   width: 50%; }
   #congrats #pa-button {
-    margin: 0 auto; }
+    margin: 0 auto;
+    padding: 10px;
+    margin-bottom: 10px; }
 
 .flex-container {
   display: -webkit-box;
@@ -397,4 +399,4 @@ ul {
     padding-top: 50px;
     font-size: 8vh; }
   .card--playButton {
-    margin-top: 100px; } }
+    margin-top: 50px; } }
